@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="SQL1000" xml:space="preserve">
+    <value>SELECT Qry.Artikelnummer,
+	   FLOOR(Qry.Menge/A.USER_InhaltKarton) AnzGanzKartons
+FROM (SELECT Artikelnummer,
+	         SUM(Menge) Menge
+      FROM CCPASSBelege B
+	     INNER JOIN Cotton.dbo.KHKVKBelegePositionen BP ON (B.Mandant=BP.Mandant
+															AND B.BelID=BP.BelID)
+      WHERE ErstelltWann BETWEEN @DatumVON AND @DatumBIS
+            AND Abgebrochen=0
+	  GROUP BY Artikelnummer) Qry
+	INNER JOIN Cotton.dbo.KHKARtikel A ON (Qry.Artikelnummer=A.Artikelnummer)
+WHERE A.USER_InhaltKarton&gt;0
+	  AND FLOOR(Qry.Menge/A.USER_InhaltKarton)&gt;=1
+ORDER BY Artikelnummer</value>
+  </data>
+  <data name="SQL1001" xml:space="preserve">
+    <value>SELECT E.Mandant,
+       CASE 
+	      WHEN P.Halle='A' THEN CONCAT(E.Halle,'.',E.Reihe,'_',P.Position,'.', E.Ebene)
+		  WHEN P.Halle ='B' THEN CONCAT(E.Halle,'.',E.Reihe,'_',P.Position,'.', E.Ebene)
+	      ELSE COALESCE(LegacyLocator,  CONCAT(E.Halle,'.',E.Reihe,'_',P.Position,'.', E.Ebene))
+	   END LegacyLocator,
+	   E.Halle,
+	   E.Reihe,
+	   P.Ebene,
+	   P.Position,
+	   Breite,
+	   Bodenhoehe,
+	   Fachhoehe,
+	   L.Bezeichnung Logik,
+	   R.ReiheModulo,
+	   R.Tiefe
+FROM LocatorReihenEbenenPositionen P
+	INNER JOIN LocatorReihenEbenen E ON (E.Mandant=P.Mandant
+										 AND E.Halle=P.Halle
+										 AND E.Reihe=P.Reihe
+										 AND E.Ebene=P.Ebene)
+		INNER JOIN LocatorReihen R ON (E.Mandant=R.Mandant
+									   AND E.Halle=R.Halle
+									   AND E.Reihe=R.Reihe)
+	INNER JOIN LocatorLogiken L ON (P.Mandant=L.Mandant
+									AND P.Logik=L.LogikID) 
+ORDER BY LegacyLocator</value>
+  </data>
+  <data name="SQL1002" xml:space="preserve">
+    <value>SELECT E.Mandant,
+       CASE 
+	      WHEN P.Halle='A' THEN CONCAT(E.Halle,'.',E.Reihe,'_',P.Position,'.', E.Ebene)
+		  WHEN P.Halle ='B' THEN CONCAT(E.Halle,'.',E.Reihe,'_',P.Position,'.', E.Ebene)
+	      ELSE COALESCE(LegacyLocator,  CONCAT(E.Halle,'.',E.Reihe,'_',P.Position,'.', E.Ebene))
+	   END LegacyLocator,
+	   E.Halle,
+	   E.Reihe,
+	   P.Ebene,
+	   P.Position,
+	   Breite,
+	   Bodenhoehe,
+	   Fachhoehe,
+	   L.Bezeichnung Logik,
+	   R.ReiheModulo,
+	   R.Tiefe
+FROM LocatorReihenEbenenPositionen P
+	INNER JOIN LocatorReihenEbenen E ON (E.Mandant=P.Mandant
+										 AND E.Halle=P.Halle
+										 AND E.Reihe=P.Reihe
+										 AND E.Ebene=P.Ebene)
+		INNER JOIN LocatorReihen R ON (E.Mandant=R.Mandant
+									   AND E.Halle=R.Halle
+									   AND E.Reihe=R.Reihe)
+	INNER JOIN LocatorLogiken L ON (P.Mandant=L.Mandant
+									AND P.Logik=L.LogikID) 
+WHERE P.Halle IN ('A', 'B')
+ORDER BY LegacyLocator</value>
+  </data>
+  <data name="SQL1003" xml:space="preserve">
+    <value>SELECT Artikelnummer,
+	   CASE
+	      WHEN CHARINDEX('  -',Bezeichnung1,0)&gt;0
+		     THEN LEFT(Bezeichnung1,CHARINDEX('  -',Bezeichnung1,0)-1)
+			 ELSE Bezeichnung1
+	   END Bezeichnung1,
+	   F.Bezeichnung Farbe,
+	   G.Bezeichnung Groesse,
+	   USER_DTKommLager,
+	   ROW_NUMBER() OVER(PARTITION BY USER_DTKommLager ORDER BY RIGHT(Artikelnummer,2) DESC) LOC_SKUCount
+FROM Cotton.dbo.KHKArtikel A
+	LEFT JOIN (SELECT Mandant,
+	                  Gruppe,
+	                  Bezeichnung
+			   FROM Cotton.dbo.KHKGruppen
+			   WHERE Typ=1000009001) G ON (A.Mandant=G.Mandant
+										   AND RIGHT(A.Artikelnummer,2)=G.Gruppe)
+	LEFT JOIN (SELECT Mandant,
+	                  Gruppe,
+	                  Bezeichnung
+			   FROM Cotton.dbo.KHKGruppen
+			   WHERE Typ=1000009000) F ON (A.Mandant=F.Mandant
+										   AND SUBSTRING(A.Artikelnummer,7,3)=F.Gruppe)
+	INNER JOIN (
+				SELECT EP.Halle + '.' + EP.Reihe + '_' + FORMAT(Position, '00') + '.' + CAST(EP.Ebene AS varchar(MAX)) AS Bezeichnung,
+					   EP.Halle, 
+					   EP.Reihe, 
+					   Position, 
+					   EP.Ebene,
+					   R.Platztyp
+				FROM CCLEAP.dbo.LocatorReihen R
+					INNER JOIN CCLEAP.dbo.LocatorReihenEbenen E ON (R.Mandant=E.Mandant
+																	AND R.Halle=E.Halle
+																	AND R.Reihe=E.Reihe)
+						INNER JOIN CCLEAP.dbo.LocatorReihenEbenenPositionen EP ON (E.Mandant=EP.Mandant
+																				   AND E.Halle=EP.Halle
+																				   AND E.Reihe=EP.Reihe
+																				   AND E.Ebene=EP.Ebene)
+				WHERE Platztyp IN (1,2)) L ON (A.USER_DTKommLager=L.Bezeichnung)
+
+
+WHERE Aktiv&lt;&gt;0
+      AND LEN(Artikelnummer)=11
+	  AND LEFT(Artikelnummer,2) &lt; '90'
+	  AND USER_DTKommLager IS NOT NULL
+	  AND USER_DTKommLager&lt;&gt; '#NEU'
+	  AND USER_DTKommLager&lt;&gt; '(NEU)'
+	  AND USER_DTKommLager&lt;&gt; 'DISCO'
+	  AND LEFT(USER_DTKommLager,1) IN ('A', 'B', 'X', 'Y', 'Z')
+ORDER BY USER_DTKommLager,
+         Artikelnummer</value>
+  </data>
+  <data name="SQL1004" xml:space="preserve">
+    <value>SELECT MIN(Artikelnummer) Artikelnummer,
+	   USER_KommLagerplatzEffektiv LocatorEffektiv
+FROM Cotton.dbo.KHKArtikel
+WHERE Aktiv&lt;&gt;0
+      AND LEFT(Artikelnummer,2) &lt;'90'
+	  AND LEN(USER_KommLagerplatzEffektiv) = 9
+GROUP BY USER_KommLagerplatzEffektiv
+ORDER BY USER_KommLagerplatzEffektiv</value>
+    <comment>Artikelnummern samt Locator</comment>
+  </data>
+  <data name="SQL1005" xml:space="preserve">
+    <value>SELECT Halle,
+	   Reihe,
+	   Ebene,
+	   Locator,
+	   L.Fachhoehe,
+	   ReiheModulo	
+FROM CCLEAP.dbo.LocFlat L
+WHERE L.PlatztypOverride=2
+ORDER BY Halle,
+	     Ebene,
+		 Reihe,
+		 CASE WHEN ReiheModulo=-1 THEN Position END DESC,
+		 CASE WHEN ReiheModulo=1 THEN Position END ASC</value>
+  </data>
+</root>
